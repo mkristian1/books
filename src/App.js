@@ -1,19 +1,21 @@
 import { Container } from "react-bootstrap";
+import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import Header from './components/layouts/header';
 import Authors from './components/pages/authors';
 import Books from './components/pages/books';
-import Home from './components/pages/home';
+import Home from './components/pages/home/home';
 
-function App() {
+function App({books}) {
+  console.log(books);
   return (
     <Router>
       <Container>
         <div className='App'>
           <Header />
           <Route path='/' exact>
-            <Home />
+            <Home books={books} />
           </Route>
           <Route path='/authors'>
             <Authors />
@@ -27,4 +29,8 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = ({books}) => {
+   return {books};
+}
+
+export default connect(mapStateToProps)(App);

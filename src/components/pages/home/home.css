@@ -1,0 +1,16 @@
+.home-page__menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap:3rem;
+    align-items: center;
+    justify-content: center;
+}
+.home-page__menu > div {
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, .1), 0 2px 6px 0 rgba(0, 0, 0, .1);
+}
+
+.home-page__menu__icon {
+    font-size: 45px;
+}
