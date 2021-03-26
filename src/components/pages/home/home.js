@@ -1,6 +1,6 @@
 import React from 'react';
 import './home.css';
-import { faBook, faPortrait } from '@fortawesome/free-solid-svg-icons'
+import { faBook, faPlus, faPortrait } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import BooksTable from './books-table';
@@ -20,6 +20,9 @@ const Home = ({ books }) => {
                     </Link>
                 </div>
             </div>
+            <Link to='/create-book'>
+                <FontAwesomeIcon className="home-page__menu__icon" icon={faPlus} />
+            </Link>
             <div className="home-page__books-table">
                 <BooksTable books={books} />
             </div>

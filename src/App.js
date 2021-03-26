@@ -2,6 +2,7 @@ import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
+import CreateBook from "./components/create-book/create-book";
 import Header from './components/layouts/header';
 import Authors from './components/pages/authors';
 import Books from './components/pages/books';
@@ -19,6 +20,9 @@ function App({books}) {
           </Route>
           <Route path='/authors'>
             <Authors />
+          </Route>
+          <Route path='/create-book'>
+            <CreateBook />
           </Route>
           <Route path='/books'>
             <Books />
