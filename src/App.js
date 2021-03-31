@@ -9,7 +9,6 @@ import Books from './components/pages/books';
 import Home from './components/pages/home/home';
 
 function App({books}) {
-  console.log(books);
   return (
     <Router>
       <Container>

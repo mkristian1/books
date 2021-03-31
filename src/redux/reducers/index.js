@@ -8,8 +8,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'BOOKS_LOADED':
+        case 'CREATE_BOOK':
             console.log('add books', action.payload);
+            return state;
+        case 'CREATE_BOOK_ERROR':
+            console.log('Create book error', action.err);
+            return state;
         default:
             return state;
     }
