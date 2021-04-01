@@ -19,10 +19,13 @@ const Home = ({ books }) => {
                         <FontAwesomeIcon className="home-page__menu__icon" icon={faPortrait} />
                     </Link>
                 </div>
+                <div>
+                    <Link to='/create-book'>
+                        <FontAwesomeIcon className="home-page__menu__icon" icon={faPlus} />
+                    </Link>
+                </div>
             </div>
-            <Link to='/create-book'>
-                <FontAwesomeIcon className="home-page__menu__icon" icon={faPlus} />
-            </Link>
+
             <div className="home-page__books-table">
                 <BooksTable books={books} />
             </div>

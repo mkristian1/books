@@ -8,7 +8,7 @@ import Authors from './components/pages/authors';
 import Books from './components/pages/books';
 import Home from './components/pages/home/home';
 
-function App({books}) {
+function App({ books }) {
   return (
     <Router>
       <Container>
@@ -32,8 +32,8 @@ function App({books}) {
   );
 }
 
-const mapStateToProps = ({books}) => {
-   return {books};
+const mapStateToProps = ({ createBook }) => {
+  return { books: createBook.books };
 }
 
 export default connect(mapStateToProps)(App);
