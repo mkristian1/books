@@ -1,6 +1,8 @@
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { compose } from "redux";
 import './App.css';
 import CreateBook from "./components/create-book/create-book";
 import Header from './components/layouts/header';
@@ -32,8 +34,11 @@ function App({ books }) {
   );
 }
 
-const mapStateToProps = ({ createBook }) => {
-  return { books: createBook.books };
+const mapStateToProps = ({ firestore }) => {
+  console.log(firestore);
+  return { books: firestore.ordered.books };
 }
 
-export default connect(mapStateToProps)(App);
+export default compose(connect(mapStateToProps), firestoreConnect([
+  { collection: 'books' }
+]))(App);
