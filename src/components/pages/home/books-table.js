@@ -12,7 +12,7 @@ const BooksTable = ({ books }) => {
                         <tr key={book.id}>
                             <td>{book.title}</td>
                             <td>{book.author}</td>
-                            <td>{book.date}</td>
+                            <td>{book.year}</td>
                             <td><Button>Del</Button></td>
                         </tr>
                     )

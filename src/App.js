@@ -35,7 +35,6 @@ function App({ books }) {
 }
 
 const mapStateToProps = ({ firestore }) => {
-  console.log(firestore);
   return { books: firestore.ordered.books };
 }
 
