@@ -7,13 +7,11 @@ const BooksTable = ({ books, authors }) => {
             <tbody>
                 {books && authors && books.map(book => {
 
-                    let author = authors.find((a) => a.id == books.author_id);
-                    console.log(author, 'author');
-
+                    let authorId = authors.findIndex((a) => a.id == book.author_id);
                     return (
                         <tr key={book.id}>
                             <td>{book.title}</td>
-                            <td>{ }</td>
+                            <td> {authors[authorId].last_name} {authors[authorId].first_name}</td>
                             <td>{book.year}</td>
                             <td><Button>Del</Button></td>
                         </tr>
