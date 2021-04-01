@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import BooksTable from './books-table';
 
-const Home = ({ books }) => {
+const Home = ({ books, authors }) => {
     return (
         <div className="home-page">
             <div className="home-page__menu mb-4">
@@ -27,7 +27,7 @@ const Home = ({ books }) => {
             </div>
 
             <div className="home-page__books-table">
-                <BooksTable books={books} />
+                <BooksTable books={books} authors={authors} />
             </div>
         </div>
 

@@ -10,14 +10,14 @@ import Authors from './components/pages/authors';
 import Books from './components/pages/books';
 import Home from './components/pages/home/home';
 
-function App({ books }) {
+function App({ books, authors }) {
   return (
     <Router>
       <Container>
         <div className='App'>
           <Header />
           <Route path='/' exact>
-            <Home books={books} />
+            <Home books={books} authors={authors} />
           </Route>
           <Route path='/authors'>
             <Authors />
@@ -35,9 +35,13 @@ function App({ books }) {
 }
 
 const mapStateToProps = ({ firestore }) => {
-  return { books: firestore.ordered.books };
+  return {
+    books: firestore.ordered.books,
+    authors: firestore.ordered.authors
+  };
 }
 
 export default compose(connect(mapStateToProps), firestoreConnect([
-  { collection: 'books' }
+  { collection: 'books' },
+  { collection: 'authors' }
 ]))(App);
