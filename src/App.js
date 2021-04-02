@@ -6,8 +6,8 @@ import { compose } from "redux";
 import './App.css';
 import CreateBook from "./components/create-book/create-book";
 import Header from './components/layouts/header';
-import Authors from './components/pages/authors';
-import Books from './components/pages/books';
+import Authors from './components/pages/authors/authors';
+import Books from './components/pages/books/books';
 import Home from './components/pages/home/home';
 
 function App({ books, authors }) {
@@ -19,14 +19,14 @@ function App({ books, authors }) {
           <Route path='/' exact>
             <Home books={books} authors={authors} />
           </Route>
+          <Route path='/books'>
+            <Books books={books} authors={authors} />
+          </Route>
           <Route path='/authors'>
             <Authors />
           </Route>
           <Route path='/create-book'>
             <CreateBook />
-          </Route>
-          <Route path='/books'>
-            <Books />
           </Route>
         </div>
       </Container>
