@@ -2,12 +2,14 @@ import React from 'react';
 import { Button, Table } from 'react-bootstrap';
 
 const BooksTable = ({ books, authors }) => {
+ 
     return (
         <Table striped bordered hover>
             <tbody>
                 {books && authors && books.map(book => {
 
-                    let authorId = authors.findIndex((a) => a.id === book.author_id);
+                    let authorId = authors.findIndex((a) => a.id === +book.author_id );
+              
                     return (
                         <tr key={book.id}>
                             <td>{book.title}</td>
