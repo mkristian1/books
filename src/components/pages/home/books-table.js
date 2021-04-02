@@ -7,7 +7,7 @@ const BooksTable = ({ books, authors }) => {
             <tbody>
                 {books && authors && books.map(book => {
 
-                    let authorId = authors.findIndex((a) => a.id == book.author_id);
+                    let authorId = authors.findIndex((a) => a.id === book.author_id);
                     return (
                         <tr key={book.id}>
                             <td>{book.title}</td>
