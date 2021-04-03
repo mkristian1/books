@@ -7,7 +7,7 @@ const CreateBook = ({ booksLoaded }) => {
     const [values, setTitle] = useState({});
     const [validated, setValidated] = useState(false);
     const handleChange = (e) => {
-        setTitle({ ...values, [e.target.name]: e.target.value });
+        setTitle({ created_at: new Date(), ...values, [e.target.name]: e.target.value });
     }
 
     const handleSubmit = (e) => {
@@ -20,8 +20,7 @@ const CreateBook = ({ booksLoaded }) => {
         } else {
             form.reset();
             setValidated(false);
-            console.log(values);
-            //booksLoaded(values);
+            booksLoaded(values);
         }
     }
     return (
