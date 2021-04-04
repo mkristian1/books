@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { booksLoaded } from '../../redux/actions';
+import { createBook } from '../../redux/actions/create-book';
 
 const CreateBook = ({ booksLoaded }) => {
     const [values, setTitle] = useState({});
     const [validated, setValidated] = useState(false);
+    const [show, setShow] = useState(false);
     const handleChange = (e) => {
         setTitle({ created_at: new Date(), ...values, [e.target.name]: e.target.value });
     }
@@ -21,12 +22,16 @@ const CreateBook = ({ booksLoaded }) => {
             form.reset();
             setValidated(false);
             booksLoaded(values);
+            setShow(true);
+            setTimeout(() => {
+                setShow(false);
+            }, 2000)
         }
     }
     return (
         <div className="create-book">
             <h1>Create Book</h1>
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form className="mb-3" noValidate validated={validated} onSubmit={handleSubmit}>
                 <Row>
                     <Col md={4}>
                         <Form.Group controlId="formBasicEmail">
@@ -69,6 +74,9 @@ const CreateBook = ({ booksLoaded }) => {
                     Add
                 </Button>
             </Form>
+            <Alert show={show} variant="success">
+                <Alert.Heading className="text-center">Book successfully added</Alert.Heading>
+            </Alert>
         </div>
 
     )
@@ -77,7 +85,7 @@ const CreateBook = ({ booksLoaded }) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         booksLoaded: (books) => {
-            dispatch(booksLoaded(books))
+            dispatch(createBook(books))
         }
     }
 }

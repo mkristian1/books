@@ -1,4 +1,4 @@
-export const booksLoaded = (books) => {
+export const createBook = (books) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore();
         firestore.collection('books').add({

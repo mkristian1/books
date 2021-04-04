@@ -8,7 +8,7 @@ import CreateBook from "./components/create-book/create-book";
 import Header from './components/layouts/header';
 import Authors from './components/pages/authors/authors';
 import Books from './components/pages/books/books';
-import BookDetails from "./components/pages/books/books-details";
+import BookDetails from "./components/pages/books/book-details";
 import Home from './components/pages/home/home';
 
 function App({ books, authors }) {
@@ -25,7 +25,7 @@ function App({ books, authors }) {
           </Route>
           <Route path='/details/:id' component={BookDetails} />
           <Route path='/authors'>
-            <Authors />
+            <Authors authors={authors} />
           </Route>
           <Route path='/create-book'>
             <CreateBook />

@@ -1,9 +1,9 @@
-import createBook from './createBook';
+import reducer from './reducer';
 import { combineReducers } from 'redux';
 import { firestoreReducer } from 'redux-firestore';
 
 const rootReducer = combineReducers({
-    createBook,
+    reducer,
     firestore : firestoreReducer,
 });
 

@@ -13,8 +13,8 @@ const Books = ({ books, authors }) => {
                 <h1><FontAwesomeIcon icon={faBook} /> Books</h1>
                 <Link to='/create-book'><Button variant="outline-success"><FontAwesomeIcon icon={faPlus} /></Button></Link>
             </div>
-            <BooksTable books={books} authors={authors} />
-        </div >
+            <BooksTable />
+        </div>
     )
 }
 
