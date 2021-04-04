@@ -11,6 +11,7 @@ import Books from './components/pages/books/books';
 import BookDetails from "./components/pages/books/book-details";
 import Home from './components/pages/home/home';
 import editBook from "./components/edit-book/edit-book";
+import AuthorDetails from "./components/pages/authors/author-details";
 
 function App({ books, authors }) {
   return (
@@ -25,6 +26,7 @@ function App({ books, authors }) {
             <Books books={books} authors={authors} />
           </Route>
           <Route path='/details/:id' component={BookDetails} />
+          <Route path='/author/details/:id' component={AuthorDetails} />
           <Route path='/edit/:id' component={editBook} />
 
           <Route path='/authors'>

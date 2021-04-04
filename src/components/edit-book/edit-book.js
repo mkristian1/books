@@ -31,7 +31,7 @@ const EditBook = ({ docId, booksActionEdit, book, authors }) => {
     }
     const authorsOption = authors.map(author => {
         return (
-            <option value={author.id} key={author.id}>{author.last_name} {author.first_name}  (id-{author.id})</option>
+            <option value={author.author_id} key={author.author_id}>{author.last_name} {author.first_name}  (id-{author.author_id})</option>
         )
     })
     return (
