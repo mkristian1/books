@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { createBook } from '../../redux/actions/create-book';
+import { editBook } from '../../redux/actions/edit-book';
 
-const CreateBook = ({ booksLoaded }) => {
-    const [values, setTitle] = useState({});
+const EditBook = ({ docId, booksActionEdit, book, authors }) => {
+    const [values, setValues] = useState({
+        created_at: new Date(), title: book.title, year: book.year, author_id: book.author_id, image: book.image
+    });
     const [validated, setValidated] = useState(false);
     const [show, setShow] = useState(false);
     const handleChange = (e) => {
-        setTitle({ created_at: new Date(), ...values, [e.target.name]: e.target.value });
+        setValues({ ...values, [e.target.name]: e.target.value });
     }
 
     const handleSubmit = (e) => {
@@ -19,24 +21,28 @@ const CreateBook = ({ booksLoaded }) => {
             e.stopPropagation();
             setValidated(true);
         } else {
-            form.reset();
             setValidated(false);
-            booksLoaded(values);
+            booksActionEdit(values, docId);
             setShow(true);
             setTimeout(() => {
                 setShow(false);
             }, 2000)
         }
     }
+    const authorsOption = authors.map(author => {
+        return (
+            <option value={author.id} key={author.id}>{author.last_name} {author.first_name}  (id-{author.id})</option>
+        )
+    })
     return (
-        <div className="create-book">
-            <h1>Create Book</h1>
+        <div className="edit-book">
+            <h1>Edit Book</h1>
             <Form className="mb-3" noValidate validated={validated} onSubmit={handleSubmit}>
                 <Row>
                     <Col md={4}>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Title</Form.Label>
-                            <Form.Control required name="title" onChange={handleChange} type="text" placeholder="Book title" />
+                            <Form.Control value={values.title} required name="title" onChange={handleChange} type="text" placeholder="Book title" />
                             <Form.Control.Feedback type="invalid">
                                 Please fill out this field
                             </Form.Control.Feedback>
@@ -45,16 +51,18 @@ const CreateBook = ({ booksLoaded }) => {
                     <Col>
                         <Form.Group controlId="formBasicyear">
                             <Form.Label>Year</Form.Label>
-                            <Form.Control required name="year" onChange={handleChange} type="number" placeholder="Year" />
+                            <Form.Control value={values.year} required name="year" onChange={handleChange} type="number" placeholder="Year" />
                             <Form.Control.Feedback type="invalid">
                                 Please fill out this field
                             </Form.Control.Feedback>
                         </Form.Group>
                     </Col>
-                    <Col>
+                    <Col md={3}>
                         <Form.Group controlId="formBasicAuthorId">
                             <Form.Label>Author Id</Form.Label>
-                            <Form.Control required name="author_id" onChange={handleChange} type="number" placeholder="Author id 1 OR 2" />
+                            <Form.Control name="author_id" onChange={handleChange} custom required as="select" size="md">                                
+                                {authorsOption}
+                            </Form.Control>
                             <Form.Control.Feedback type="invalid">
                                 Please fill out this field
                             </Form.Control.Feedback>
@@ -63,7 +71,7 @@ const CreateBook = ({ booksLoaded }) => {
                     <Col md={3}>
                         <Form.Group controlId="formBasicAuthorId">
                             <Form.Label>Image</Form.Label>
-                            <Form.Control required name="image" onChange={handleChange} type="text" placeholder="Base 64" />
+                            <Form.Control value={values.image} required name="image" onChange={handleChange} type="text" placeholder="Base 64" />
                             <Form.Control.Feedback type="invalid">
                                 Please fill out this field
                             </Form.Control.Feedback>
@@ -71,23 +79,36 @@ const CreateBook = ({ booksLoaded }) => {
                     </Col>
                 </Row>
                 <Button size="lg" block variant="primary" type="submit">
-                    Add
+                    Edit
                 </Button>
             </Form>
             <Alert show={show} variant="success">
-                <Alert.Heading className="text-center">Book successfully added</Alert.Heading>
+                <Alert.Heading className="text-center">Book successfully edited</Alert.Heading>
             </Alert>
         </div>
 
     )
 }
 
+const mapStateToProps = (state, ownProps) => {
+    const id = ownProps.match.params.id;
+    const books = state.firestore.data.books;
+    const authors = state.firestore.ordered.authors;
+    const book = books ? books[id] : null;
+
+    return {
+        docId: id,
+        book: book,
+        authors: authors,
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        booksLoaded: (books) => {
-            dispatch(createBook(books))
+        booksActionEdit: (bookData, docId) => {
+            dispatch(editBook(bookData, docId))
         }
     }
 }
 
-export default connect(null, mapDispatchToProps)(CreateBook);
+export default connect(mapStateToProps, mapDispatchToProps)(EditBook);

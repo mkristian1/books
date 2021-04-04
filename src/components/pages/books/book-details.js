@@ -5,11 +5,9 @@ import { compose } from "redux";
 import Loading from "../../loading/loading";
 
 const BookDetails = ({ book, authors }) => {
-
     if (book && authors) {
         let authorId = authors.findIndex((a) => a.id === +book.author_id);
         return (
-
             <div className="bookDetails">
                 <h1>{book.title}</h1>
                 <img className="mb-4" src={book.img} alt={book.title} />
@@ -33,7 +31,6 @@ const mapStateToProps = (state, ownProps) => {
         book: book,
         authors: authors,
     }
-
 }
 
 export default compose(
@@ -42,5 +39,4 @@ export default compose(
         { collection: 'books' },
         { collection: 'authors' }
     ])
-)
-    (BookDetails);
+)(BookDetails);

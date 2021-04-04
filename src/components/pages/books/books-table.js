@@ -17,13 +17,14 @@ const BooksTable = ({ books, authors, deleteBookAction }) => {
     }
 
     return (
-        <Table striped bordered hover>
+        <Table striped responsive bordered hover>
             <thead>
                 <tr>
                     <th>Title</th>
                     <th>Author</th>
                     <th>Year</th>
                     <th>Created at</th>
+                    <th className="text-right">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,9 +38,9 @@ const BooksTable = ({ books, authors, deleteBookAction }) => {
                             <td> {authors[authorId].last_name} {authors[authorId].first_name}</td>
                             <td>{book.year}</td>
                             <td>{moment(createdAt).fromNow()}</td>
-                            <td className="text-right">
+                            <td className="text-right d-flex justify-content-end">                                
                                 <Link to={`details/${book.id}`}><Button className="mr-2" variant="success"><FontAwesomeIcon icon={faEye} /></Button></Link>
-                                <Button className="mr-2" variant="info"><FontAwesomeIcon icon={faEdit} /></Button>
+                                <Link to={`edit/${book.id}`}><Button className="mr-2" variant="info"><FontAwesomeIcon icon={faEdit} /></Button></Link>
                                 <Button onClick={() => HandleDeleteBook(book.id)} variant="danger"><FontAwesomeIcon icon={faTrash} /></Button>
                             </td>
                         </tr>
