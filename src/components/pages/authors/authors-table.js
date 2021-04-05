@@ -12,8 +12,7 @@ const AuthorsTable = ({ authors, deleteAuthorAction }) => {
 
     const HandleDeleteAuthor = (bookId) => {
         deleteAuthorAction(bookId)
-    }
-   
+    }   
 
     return (
         <Table responsive striped bordered hover>

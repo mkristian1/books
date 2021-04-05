@@ -39,7 +39,7 @@ const BooksTable = ({ books, authors, deleteBookAction }) => {
                             <td>{moment(createdAt).fromNow()}</td>
                             <td className="text-right d-flex justify-content-end">                                
                                 <Link to={`/book/details/${book.id}`}><Button className="mr-2" variant="success"><FontAwesomeIcon icon={faEye} /></Button></Link>
-                                <Link to={`edit/${book.id}`}><Button className="mr-2" variant="info"><FontAwesomeIcon icon={faEdit} /></Button></Link>
+                                <Link to={`/book/edit/${book.id}`}><Button className="mr-2" variant="info"><FontAwesomeIcon icon={faEdit} /></Button></Link>
                                 <Button onClick={() => HandleDeleteBook(book.id)} variant="danger"><FontAwesomeIcon icon={faTrash} /></Button>
                             </td>
                         </tr>
