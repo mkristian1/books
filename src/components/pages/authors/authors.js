@@ -11,7 +11,7 @@ const Authors = ({ authors }) => {
         <div className="books">
             <div className="d-flex align-items-center justify-content-between mb-4">
                 <h1><FontAwesomeIcon icon={faPortrait} /> Authors</h1>
-                <Link to='/create-book'><Button variant="outline-success"><FontAwesomeIcon icon={faPlus} /></Button></Link>
+                <Link to='/create-author'><Button variant="outline-success"><FontAwesomeIcon icon={faPlus} /></Button></Link>
             </div>
             <AuthorsTable authors={authors} />
         </div>

@@ -12,6 +12,7 @@ import BookDetails from "./components/pages/books/book-details";
 import Home from './components/pages/home/home';
 import editBook from "./components/edit-book/edit-book";
 import AuthorDetails from "./components/pages/authors/author-details";
+import CreateAuthor from "./components/create-author/create-author";
 
 function App({ books, authors }) {
   return (
@@ -20,17 +21,19 @@ function App({ books, authors }) {
         <div className='App'>
           <Header />
           <Route path='/' exact>
-            <Home books={books} authors={authors} />
+            <Home />
           </Route>
           <Route path='/books'>
             <Books books={books} authors={authors} />
           </Route>
-          <Route path='/details/:id' component={BookDetails} />
+          <Route path='/book/details/:id' component={BookDetails} />
           <Route path='/author/details/:id' component={AuthorDetails} />
           <Route path='/edit/:id' component={editBook} />
-
           <Route path='/authors'>
             <Authors authors={authors} />
+          </Route>
+          <Route path='/create-author'>
+            <CreateAuthor />
           </Route>
           <Route path='/create-book'>
             <CreateBook />

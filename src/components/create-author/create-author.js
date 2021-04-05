@@ -1,0 +1,85 @@
+import React, { useState } from 'react';
+import { Form, Button, Row, Col, Alert } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { createBook } from '../../redux/actions/create-book';
+
+const CreateAuthor = ({ booksLoaded }) => {
+    const [values, setTitle] = useState({});
+    const [validated, setValidated] = useState(false);
+    const [show, setShow] = useState(false);
+    const handleChange = (e) => {
+        setTitle({ created_at: new Date(), ...values, [e.target.name]: e.target.value });
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+
+        if (form.checkValidity() === false) {
+            e.stopPropagation();
+            setValidated(true);
+        } else {
+            form.reset();
+            setValidated(false);
+            booksLoaded(values);
+            setShow(true);
+            setTimeout(() => {
+                setShow(false);
+            }, 2000)
+        }
+    }
+    return (
+        <div className="create-author">
+            <h1>Create Author</h1>
+            <Form className="mb-3" noValidate validated={validated} onSubmit={handleSubmit}>
+                <Row>
+                    <Col md={4}>
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control required name="first_name" onChange={handleChange} type="text" placeholder="First Name" />
+                            <Form.Control.Feedback type="invalid">
+                                Please fill out this field
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                    </Col>
+                    <Col md={4}>
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control required name="last_name" onChange={handleChange} type="text" placeholder="Last Name" />
+                            <Form.Control.Feedback type="invalid">
+                                Please fill out this field
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                    </Col>
+                
+                    <Col>
+                        <Form.Group controlId="formBasicAuthorId">
+                            <Form.Label>Author Id</Form.Label>
+                            <Form.Control required name="author_id" onChange={handleChange} type="number" placeholder="Author Id" />
+                            <Form.Control.Feedback type="invalid">
+                                Please fill out this field
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Button size="lg" block variant="primary" type="submit">
+                    Add
+                </Button>
+            </Form>
+            <Alert show={show} variant="success">
+                <Alert.Heading className="text-center">Book successfully added</Alert.Heading>
+            </Alert>
+        </div>
+
+    )
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        booksLoaded: (books) => {
+            dispatch(createBook(books))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CreateAuthor);

@@ -12,7 +12,6 @@ import { deleteBook } from '../../../redux/actions/delete-book';
 const BooksTable = ({ books, authors, deleteBookAction }) => {
 
     const HandleDeleteBook = (bookId) => {
-        console.log(bookId);
         deleteBookAction(bookId)
     }
    
@@ -40,7 +39,7 @@ const BooksTable = ({ books, authors, deleteBookAction }) => {
                             <td>{book.year}</td>
                             <td>{moment(createdAt).fromNow()}</td>
                             <td className="text-right d-flex justify-content-end">                                
-                                <Link to={`details/${book.id}`}><Button className="mr-2" variant="success"><FontAwesomeIcon icon={faEye} /></Button></Link>
+                                <Link to={`/book/details/${book.id}`}><Button className="mr-2" variant="success"><FontAwesomeIcon icon={faEye} /></Button></Link>
                                 <Link to={`edit/${book.id}`}><Button className="mr-2" variant="info"><FontAwesomeIcon icon={faEdit} /></Button></Link>
                                 <Button onClick={() => HandleDeleteBook(book.id)} variant="danger"><FontAwesomeIcon icon={faTrash} /></Button>
                             </td>
