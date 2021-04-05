@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { createBook } from '../../redux/actions/create-book';
+import { createAuthor } from '../../redux/actions/create-author';
 
-const CreateAuthor = ({ booksLoaded }) => {
+const CreateAuthor = ({ createAuthorAction, authors }) => {
+
     const [values, setTitle] = useState({});
     const [validated, setValidated] = useState(false);
     const [show, setShow] = useState(false);
     const handleChange = (e) => {
         setTitle({ created_at: new Date(), ...values, [e.target.name]: e.target.value });
     }
-
+    console.log(values);
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.currentTarget;
@@ -19,9 +20,12 @@ const CreateAuthor = ({ booksLoaded }) => {
             e.stopPropagation();
             setValidated(true);
         } else {
+            var authorId = authors.length;
+            console.log(++authorId);
             form.reset();
             setValidated(false);
-            booksLoaded(values);
+            const authorData = { values, authorId }
+            createAuthorAction(authorData);
             setShow(true);
             setTimeout(() => {
                 setShow(false);
@@ -51,16 +55,6 @@ const CreateAuthor = ({ booksLoaded }) => {
                             </Form.Control.Feedback>
                         </Form.Group>
                     </Col>
-                
-                    <Col>
-                        <Form.Group controlId="formBasicAuthorId">
-                            <Form.Label>Author Id</Form.Label>
-                            <Form.Control required name="author_id" onChange={handleChange} type="number" placeholder="Author Id" />
-                            <Form.Control.Feedback type="invalid">
-                                Please fill out this field
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </Col>
                 </Row>
                 <Button size="lg" block variant="primary" type="submit">
                     Add
@@ -74,12 +68,19 @@ const CreateAuthor = ({ booksLoaded }) => {
     )
 }
 
+const mapStateToProps = ({ firestore }) => {
+    const authors = firestore.ordered.authors;
+    return {
+        authors: authors
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        booksLoaded: (books) => {
-            dispatch(createBook(books))
+        createAuthorAction: (author) => {
+            dispatch(createAuthor(author))
         }
     }
 }
 
-export default connect(null, mapDispatchToProps)(CreateAuthor);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateAuthor);

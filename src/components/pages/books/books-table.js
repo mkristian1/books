@@ -10,7 +10,6 @@ import { compose } from 'redux';
 import { deleteBook } from '../../../redux/actions/delete-book';
 
 const BooksTable = ({ books, authors, deleteBookAction }) => {
-
     const HandleDeleteBook = (bookId) => {
         deleteBookAction(bookId)
     }

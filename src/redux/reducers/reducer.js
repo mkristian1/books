@@ -23,6 +23,10 @@ const reducer = (state = initialState, action) => {
         case 'DELETE_BOOK_ERROR':
             console.log('Create book error', action.err);
             return state;
+        case 'CREATE_AUTHOR':
+            console.log('Create author');
+        case 'CREATE_AUTHOR_ERROR':
+            return state;
         default:
             return state;
     }
