@@ -3,7 +3,7 @@ import { Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { createBook } from '../../redux/actions/create-book';
 
-const CreateBook = ({ booksLoaded }) => {
+const CreateBook = ({ booksLoaded, authors }) => {
     const [values, setTitle] = useState({});
     const [validated, setValidated] = useState(false);
     const [show, setShow] = useState(false);
@@ -28,6 +28,12 @@ const CreateBook = ({ booksLoaded }) => {
             }, 2000)
         }
     }
+
+    const authorsOption = authors.map(author => {
+        return (
+            <option value={author.author_id} key={author.author_id}>{author.last_name} {author.first_name}  (id-{author.author_id})</option>
+        )
+    })
     return (
         <div className="create-book">
             <h1>Create Book</h1>
@@ -51,10 +57,12 @@ const CreateBook = ({ booksLoaded }) => {
                             </Form.Control.Feedback>
                         </Form.Group>
                     </Col>
-                    <Col>
+                    <Col md={3}>
                         <Form.Group controlId="formBasicAuthorId">
                             <Form.Label>Author Id</Form.Label>
-                            <Form.Control required name="author_id" onChange={handleChange} type="number" placeholder="Author id 1 OR 2" />
+                            <Form.Control name="author_id" onChange={handleChange} custom required as="select" size="md">
+                                {authorsOption}
+                            </Form.Control>
                             <Form.Control.Feedback type="invalid">
                                 Please fill out this field
                             </Form.Control.Feedback>
@@ -82,6 +90,13 @@ const CreateBook = ({ booksLoaded }) => {
     )
 }
 
+const mapStateToProps = ({ firestore }) => {
+    const authors = firestore.ordered.authors;
+    return {
+        authors: authors
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         booksLoaded: (books) => {
@@ -90,4 +105,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(CreateBook);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateBook);
