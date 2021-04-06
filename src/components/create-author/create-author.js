@@ -20,8 +20,7 @@ const CreateAuthor = ({ createAuthorAction, authors }) => {
             e.stopPropagation();
             setValidated(true);
         } else {
-            var authorId = authors.length;
-            console.log(++authorId);
+            const authorId = authors.length;
             form.reset();
             setValidated(false);
             const authorData = { values, authorId }

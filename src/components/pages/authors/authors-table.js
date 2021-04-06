@@ -31,11 +31,10 @@ const AuthorsTable = ({ authors, deleteAuthorAction }) => {
                             <td> {author.first_name}</td>
                             <td className="text-right d-flex justify-content-end">
                                 <Link to={`author/details/${author.id}`}><Button className="mr-2" variant="success"><FontAwesomeIcon icon={faEye} /></Button></Link>
-                                <Button className="mr-2" variant="info"><FontAwesomeIcon icon={faEdit} /></Button>
+                                <Link to={`author/edit/${author.id}`}><Button className="mr-2" variant="info"><FontAwesomeIcon icon={faEdit} /></Button></Link>
                                 <Button onClick={() => HandleDeleteAuthor(author.id)} variant="danger"><FontAwesomeIcon icon={faTrash} /></Button>
                             </td>
                         </tr>
-
                     )
                 })
                 }

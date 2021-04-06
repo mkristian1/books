@@ -10,9 +10,10 @@ import Authors from './components/pages/authors/authors';
 import Books from './components/pages/books/books';
 import BookDetails from "./components/pages/books/book-details";
 import Home from './components/pages/home/home';
-import editBook from "./components/edit-book/edit-book";
 import AuthorDetails from "./components/pages/authors/author-details";
 import CreateAuthor from "./components/create-author/create-author";
+import EditBook from "./components/edit-book/edit-book";
+import EditAuthor from "./components/edit-author/edit-author";
 
 function App({ books, authors }) {
   return (
@@ -28,7 +29,8 @@ function App({ books, authors }) {
           </Route>
           <Route path='/book/details/:id' component={BookDetails} />
           <Route path='/author/details/:id' component={AuthorDetails} />
-          <Route path='/book/edit/:id' component={editBook} />
+          <Route path='/book/edit/:id' component={EditBook} />
+          <Route path='/author/edit/:id' component={EditAuthor} />
           <Route path='/authors'>
             <Authors authors={authors} />
           </Route>

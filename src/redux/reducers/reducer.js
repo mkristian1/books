@@ -3,6 +3,9 @@ const initialState = {
         { id: 1, title: "Everithing is posible", author: 'James Brook', date: 2005 },
         { id: 2, title: "Life is good", authoe: 'Son', date: 2019 }
     ],
+    authors: [
+        { id: 1, first_name: 'test', last_name: 'Test' }
+    ],
     booksLoaded: []
 }
 
@@ -16,6 +19,15 @@ const reducer = (state = initialState, action) => {
             return state;
         case 'EDIT_BOOK':
             console.log('edit book');
+            return state;
+        case 'EDIT_BOOK_ERROR':
+            console.log('edit book');
+            return state;
+        case 'EDIT_AUTHOR':
+            console.log('edit author');
+            return state;
+        case 'EDIT_AUTHOR_ERROR':
+            console.log('edit author error');
             return state;
         case 'DELETE_BOOK':
             console.log('delete book');
