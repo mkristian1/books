@@ -7,12 +7,13 @@ import { firestoreConnect } from "react-redux-firebase";
 import { Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { deleteAuthor } from '../../../redux/actions/delete-author';
+import Loading from '../../loading/loading';
 
 const AuthorsTable = ({ authors, deleteAuthorAction }) => {
 
     const HandleDeleteAuthor = (bookId) => {
         deleteAuthorAction(bookId)
-    }   
+    }
 
     return (
         <Table responsive striped bordered hover>
@@ -24,6 +25,7 @@ const AuthorsTable = ({ authors, deleteAuthorAction }) => {
                 </tr>
             </thead>
             <tbody>
+                {!authors ? <tr><td colSpan="3"><Loading /></td></tr> : null}
                 {authors && authors.map(author => {
                     return (
                         <tr key={author.id}>

@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { deleteBook } from '../../../redux/actions/delete-book';
+import Loading from '../../loading/loading';
 
 const BooksTable = ({ books, authors, deleteBookAction }) => {
     const HandleDeleteBook = (bookId) => {
@@ -26,6 +27,7 @@ const BooksTable = ({ books, authors, deleteBookAction }) => {
                 </tr>
             </thead>
             <tbody>
+                {!books && !authors ? <tr><td colSpan="5"><Loading /></td></tr> : null}
                 {books && authors && books.map(book => {
                     let sec = book.created_at.seconds;
                     let createdAt = new Date(sec * 1000);
