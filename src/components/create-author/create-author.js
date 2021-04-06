@@ -11,7 +11,6 @@ const CreateAuthor = ({ createAuthorAction, authors }) => {
     const handleChange = (e) => {
         setTitle({ created_at: new Date(), ...values, [e.target.name]: e.target.value });
     }
-    console.log(values);
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.currentTarget;
@@ -20,7 +19,7 @@ const CreateAuthor = ({ createAuthorAction, authors }) => {
             e.stopPropagation();
             setValidated(true);
         } else {
-            const authorId = authors.length;
+            const authorId = authors.length + 1;
             form.reset();
             setValidated(false);
             const authorData = { values, authorId }
