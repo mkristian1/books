@@ -31,7 +31,7 @@ const CreateBook = ({ booksLoaded, authors }) => {
 
     const authorsOption = authors.map(author => {
         return (
-            <option value={author.author_id} key={author.author_id}>{author.last_name} {author.first_name}  (id-{author.author_id})</option>
+            <option value={author.id} key={author.id}>{author.last_name} {author.first_name}</option>
         )
     })
     return (
@@ -59,7 +59,7 @@ const CreateBook = ({ booksLoaded, authors }) => {
                     </Col>
                     <Col md={3}>
                         <Form.Group controlId="formBasicAuthorId">
-                            <Form.Label>Author Id</Form.Label>
+                            <Form.Label>Author</Form.Label>
                             <Form.Control name="author_id" onChange={handleChange} custom required as="select" size="md">
                                 {authorsOption}
                             </Form.Control>

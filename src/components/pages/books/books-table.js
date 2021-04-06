@@ -29,8 +29,9 @@ const BooksTable = ({ books, authors, deleteBookAction }) => {
                 {books && authors && books.map(book => {
                     let sec = book.created_at.seconds;
                     let createdAt = new Date(sec * 1000);
-                    let authorId = authors.findIndex((a) => +a.author_id === +book.author_id);
-                   
+                    let authorId = authors.findIndex((a) => a.id === book.author_id);
+
+                    console.log(authors);
                     return (
                         <tr key={book.id}>
                             <td>{book.title}</td>

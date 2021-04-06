@@ -3,7 +3,7 @@ import { Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { createAuthor } from '../../redux/actions/create-author';
 
-const CreateAuthor = ({ createAuthorAction, authors }) => {
+const CreateAuthor = ({ createAuthorAction }) => {
 
     const [values, setTitle] = useState({});
     const [validated, setValidated] = useState(false);
@@ -19,11 +19,9 @@ const CreateAuthor = ({ createAuthorAction, authors }) => {
             e.stopPropagation();
             setValidated(true);
         } else {
-            const authorId = authors.length + 1;
             form.reset();
             setValidated(false);
-            const authorData = { values, authorId }
-            createAuthorAction(authorData);
+            createAuthorAction(values);
             setShow(true);
             setTimeout(() => {
                 setShow(false);
