@@ -26,7 +26,7 @@ const AuthorsTable = ({ authors, deleteAuthorAction }) => {
             <tbody>
                 {authors && authors.map(author => {
                     return (
-                        <tr key={author.author_id}>
+                        <tr key={author.id}>
                             <td>{author.last_name}</td>
                             <td> {author.first_name}</td>
                             <td className="text-right d-flex justify-content-end">

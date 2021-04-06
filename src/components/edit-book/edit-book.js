@@ -61,6 +61,7 @@ const EditBook = ({ docId, booksActionEdit, book, authors }) => {
                         <Form.Group controlId="formBasicAuthorId">
                             <Form.Label>Author</Form.Label>
                             <Form.Control name="author_id" onChange={handleChange} custom required as="select" size="md">                                
+                            <option>Please select Author</option>
                                 {authorsOption}
                             </Form.Control>
                             <Form.Control.Feedback type="invalid">

@@ -6,7 +6,7 @@ import BooksTable from './books-table';
 import { Button } from 'react-bootstrap';
 
 
-const Books = ({ books, authors }) => {
+const Books = () => {
     return (
         <div className="books">
             <div className="d-flex align-items-center justify-content-between mb-4">

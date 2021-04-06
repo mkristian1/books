@@ -6,6 +6,8 @@ const initialState = {
     authors: [
         { id: 1, first_name: 'test', last_name: 'Test' }
     ],
+    book: [],
+    author: [],
     booksLoaded: []
 }
 

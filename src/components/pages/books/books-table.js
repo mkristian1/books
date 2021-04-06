@@ -13,7 +13,7 @@ const BooksTable = ({ books, authors, deleteBookAction }) => {
     const HandleDeleteBook = (bookId) => {
         deleteBookAction(bookId)
     }
-   
+
     return (
         <Table striped responsive bordered hover>
             <thead>
@@ -31,14 +31,13 @@ const BooksTable = ({ books, authors, deleteBookAction }) => {
                     let createdAt = new Date(sec * 1000);
                     let authorId = authors.findIndex((a) => a.id === book.author_id);
 
-                    console.log(authors);
                     return (
                         <tr key={book.id}>
                             <td>{book.title}</td>
-                            <td> {authors[authorId].last_name} {authors[authorId].first_name}</td>
+                            <td>{authors[authorId] ? authors[authorId].last_name : 'Author not found'} {authors[authorId] ? authors[authorId].first_name : ''}</td>
                             <td>{book.year}</td>
                             <td>{moment(createdAt).fromNow()}</td>
-                            <td className="text-right d-flex justify-content-end">                                
+                            <td className="text-right d-flex justify-content-end">
                                 <Link to={`/book/details/${book.id}`}><Button className="mr-2" variant="success"><FontAwesomeIcon icon={faEye} /></Button></Link>
                                 <Link to={`/book/edit/${book.id}`}><Button className="mr-2" variant="info"><FontAwesomeIcon icon={faEdit} /></Button></Link>
                                 <Button onClick={() => HandleDeleteBook(book.id)} variant="danger"><FontAwesomeIcon icon={faTrash} /></Button>

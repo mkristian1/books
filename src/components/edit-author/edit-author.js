@@ -9,7 +9,6 @@ const EditAuthor = ({ docId, AuthorActionEdit, author }) => {
         created_at: new Date(),
         first_name: author.first_name,
         last_name: author.last_name,
-        author_id: author.author_id
     });
     const [validated, setValidated] = useState(false);
     const [show, setShow] = useState(false);
@@ -39,16 +38,7 @@ const EditAuthor = ({ docId, AuthorActionEdit, author }) => {
             <h1>Edit Author</h1>
             <Form className="mb-3" noValidate validated={validated} onSubmit={handleSubmit}>
                 <Row>
-                    <Col md={4}>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Last Name</Form.Label>
-                            <Form.Control value={values.last_name} required name="last_name" onChange={handleChange} type="text" placeholder="Last Name" />
-                            <Form.Control.Feedback type="invalid">
-                                Please fill out this field
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </Col>
-                    <Col md={4}>
+                <Col md={4}>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>First Name</Form.Label>
                             <Form.Control value={values.first_name} required name="first_name" onChange={handleChange} type="text" placeholder="First Name" />
@@ -57,6 +47,15 @@ const EditAuthor = ({ docId, AuthorActionEdit, author }) => {
                             </Form.Control.Feedback>
                         </Form.Group>
                     </Col>
+                    <Col md={4}>
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control value={values.last_name} required name="last_name" onChange={handleChange} type="text" placeholder="Last Name" />
+                            <Form.Control.Feedback type="invalid">
+                                Please fill out this field
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                    </Col>                 
 
                 </Row>
                 <Button size="lg" block variant="primary" type="submit">

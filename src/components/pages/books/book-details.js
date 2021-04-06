@@ -13,7 +13,9 @@ const BookDetails = ({ book, authors }) => {
             <div className="bookDetails">
                 <h1>{book.title}</h1>
                 <img className="mb-4" src={book.img} alt={book.title} />
-                <h5>Author: {authors[authorId].last_name} {authors[authorId].first_name} </h5>
+                <h5>Author: 
+                {authors[authorId] ? authors[authorId].last_name : 'Author not found'} 
+                {authors[authorId]  ? authors[authorId].first_name : ''} </h5>
                 <p>Year: {book.year}</p>
             </div>
         )
