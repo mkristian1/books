@@ -34,6 +34,7 @@ const EditBook = ({ docId, booksActionEdit, book, authors }) => {
             <option value={author.id} key={author.id}>{author.last_name} {author.first_name}</option>
         )
     })
+    console.log(values.author_id);
     return (
         <div className="edit-book">
             <h1>Edit Book</h1>
@@ -60,8 +61,7 @@ const EditBook = ({ docId, booksActionEdit, book, authors }) => {
                     <Col md={3}>
                         <Form.Group controlId="formBasicAuthorId">
                             <Form.Label>Author</Form.Label>
-                            <Form.Control name="author_id" onChange={handleChange} custom required as="select" size="md">                                
-                            <option>Please select Author</option>
+                            <Form.Control value={values.author_id} name="author_id" onChange={handleChange} custom required as="select" size="md">                                
                                 {authorsOption}
                             </Form.Control>
                             <Form.Control.Feedback type="invalid">
